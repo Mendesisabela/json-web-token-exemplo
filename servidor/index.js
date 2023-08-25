@@ -43,7 +43,7 @@ app.get('/usuarios/cadastrar', async function(req, res){
 
 app.post('/usuarios/cadastrar', async function(req, res){
   try {
-    if(req.body.senha == req.body.novamente){
+    if(req.body.senha == req.body.csenha){
       await usuario.create(req.body);
       res.redirect('/usuarios/listar')
     }
@@ -67,7 +67,7 @@ app.post('/logar', (req, res) => {
   if(req.body.usuario == 'mendes' && req.body.senha == '123') {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
-      expiresIn: 300
+      expiresIn: 3000
     })
     res.cookie('token', token, {httpOnly:true});
     return res.json({
@@ -75,7 +75,7 @@ app.post('/logar', (req, res) => {
       token: token
     })
   }
-    res.status(500).json({mensagem: "Login inválido"})
+    res.status(500).json({mensagem: "Login inválido!"})
 })
 
 app.post('/deslogar', function(req, res) {
@@ -83,6 +83,6 @@ app.post('/deslogar', function(req, res) {
   res.json({deslogar:true})
 })
 
-app.listen(3000, function() {
+app.listen(3001, function() {
   console.log('App de Exemplo escutando na porta 3000!')
 });

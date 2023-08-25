@@ -235,11 +235,14 @@
         <h1>Cadastro</h1>
         <p>Digite os seus dados para cadastro no campo abaixo.</p>
         <label for="text">Nome</label>
-        <input type="text" placeholder="Digite seu username" autofocus="true" />
+        <input name="nome" type="text" placeholder="Digite seu username" autofocus="true" />
+
         <label for="password">Senha</label>
-        <input type="password" placeholder="Digite sua senha" />
+        <input name="senha" type="password" placeholder="Digite sua senha" />
+
         <label for="password">Senha Novamente</label>
-        <input type="password" placeholder="Digite sua senha" />
+        <input  name="confirmar" type="password" placeholder="Digite sua senha" />
+        
        <input class="a" type="submit" value="Cadastrar" action="/usuarios/cadastrar">
     </form>
   </div>
