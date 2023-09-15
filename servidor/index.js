@@ -1,5 +1,6 @@
 // JWT
 require("dotenv-safe").config();
+const crypto = require('./crypto');
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
@@ -43,8 +44,12 @@ app.get('/usuarios/cadastrar', async function(req, res){
 
 app.post('/usuarios/cadastrar', async function(req, res){
   try {
-    if(req.body.senha == req.body.csenha){
-      await usuario.create(req.body);
+    const criptografia = {
+      nome: req.body.name,
+      senha: crypto.encrypt(req.body.senha)
+    }
+    if(req.body.senha == req.body.confirmar){
+      const banco = await usuario.create(criptografia); 
       res.redirect('/usuarios/listar')
     }
 } catch (err) {
@@ -55,8 +60,8 @@ app.post('/usuarios/cadastrar', async function(req, res){
 
 app.get('/usuarios/listar', async function(req, res){
  try {
-  var usuarios = await usuario.findAll();
-  res.render('home', { usuarios });
+  var banco = await usuario.findAll();
+  res.render('home', { banco });
 } catch (err) {
   console.error(err);
   res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });
@@ -83,6 +88,7 @@ app.post('/deslogar', function(req, res) {
   res.json({deslogar:true})
 })
 
-app.listen(3001, function() {
+app.listen(3000, function() {
   console.log('App de Exemplo escutando na porta 3000!')
 });
+

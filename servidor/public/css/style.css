@@ -4,7 +4,7 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: #023047;
+    color: #73bade;
     overflow: hidden;
     height: 100vh;
     background: #222;
@@ -100,4 +100,9 @@ body {
     transform: scale(1.05);
     background-color: #663b92;
 
+}
+
+.listar{
+    text-align: center;
+    font-weight: bold;  
 }
