@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +8,14 @@
   <title>Listar</title>
 </head>
 <body>
-  <div class="listar">
-  <% banco.forEach((usuario) => { %>
-    <%= usuario.nome %>
+  <div class="listar"> <hr size="1" width="100%">
+  <% banco.forEach((usuario) => { %> 
+    <p> <%= usuario.nome %> </p>
     <%= usuario.senha %>
+    <hr size="1" width="100%">
   <% }) %>
   <form action="/deslogar" method="post">
-    <input type="submit" value="Deslogar">
+    <input type="submit" value="Deslogar" class="deslog">
   </div>
   </form>
 </body>
