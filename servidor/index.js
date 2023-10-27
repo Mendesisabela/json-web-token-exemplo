@@ -68,8 +68,9 @@ app.get('/usuarios/listar', async function(req, res){
 }
 })
 
-app.post('/logar', (req, res) => {
-  if(req.body.usuario == 'mendes' && req.body.senha == '123') {
+app.post('/logar', async (req, res) => {
+  const u = await usuario.findOne({ where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) } });
+   if(u) {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3000
