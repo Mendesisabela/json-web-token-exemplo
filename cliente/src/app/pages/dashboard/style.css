@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+    background: #7e7483;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    color: aliceblue;
+}
+
+
+li {
+  display: inline;
+}
+
+li {
+  float: left;
+}
+
+a {
+  display: block;
+  padding: 8px;
+  background-color: #48425A;
+
+}
+
+ul {
+  background-color: #dddddd;
+  
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2e293f;
+
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #dddddd;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+
+
+.usuarios{
+  font-size: 20px;
+  color: #ffffff;
+}
