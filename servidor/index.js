@@ -13,11 +13,8 @@ const corsOpcoes = {
   methods: "GET, PUT, POST, DELETE",
 
   allowedHeaders: "Content-Type,Authorization",
-  credentials: true 
+  credentials: true
 }
-
-
-
 
 var cookieParser = require('cookie-parser')
 
@@ -65,7 +62,6 @@ app.post('/usuarios/cadastrar', async function(req, res){
     }
     if(req.body.senha == req.body.confirmar){
       const banco = await usuario.create(criptografia); 
-      res.redirect('/usuarios/listar')
     }
 } catch (err) {
     console.error(err);
@@ -84,22 +80,19 @@ app.get('/usuarios/listar', async function(req, res){
 })
 
 app.post('/logar', async (req, res) => {
-  const u = await usuario.findOne({ where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) } });
+  const u = await usuario.findOne({ where: { nome: req.body.name, senha: crypto.encrypt(req.body.password) } });
    if(u) {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3000
     })
     res.cookie('token', token, {httpOnly:true}).json({
-      nome: u.nome,
+      name: u.nome,
       token: token,
     })
-    return res.json({
-      usuario: req.body.usuario,
-      token: token
-    })
+   // return res.json(u)
   }
-    res.status(500).json({mensagem: "Login inválido!"})
+   // res.status(500).json({mensagem: "Login inválido!"})
 })
 
 app.post('/deslogar', function(req, res) {
@@ -107,7 +100,7 @@ app.post('/deslogar', function(req, res) {
   res.json({deslogar:true})
 })
 
-app.listen(3000, function() {
-  console.log('App de Exemplo escutando na porta 3000!')
+app.listen(4000, function() {
+  console.log('App de Exemplo escutando na porta 4000!')
 });
 
