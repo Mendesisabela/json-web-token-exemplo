@@ -62,6 +62,7 @@ app.post('/usuarios/cadastrar', async function(req, res){
     }
     if(req.body.senha == req.body.confirmar){
       const banco = await usuario.create(criptografia); 
+      res.redirect('/usuarios/listar')
     }
 } catch (err) {
     console.error(err);
@@ -82,13 +83,13 @@ app.get('/usuarios/listar', async function(req, res){
 app.post('/logar', async (req, res) => {
   const u = await usuario.findOne({ where: { nome: req.body.name, senha: crypto.encrypt(req.body.password) } });
    if(u) {
-    const id = 1;
+    const id = u.id;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3000
     })
     res.cookie('token', token, {httpOnly:true}).json({
-      name: u.nome,
-      token: token,
+      nome: u.nome,
+      token: token
     })
    // return res.json(u)
   }
@@ -101,6 +102,6 @@ app.post('/deslogar', function(req, res) {
 })
 
 app.listen(3001 , function() {
-  console.log('App de Exemplo escutando na porta 4000!')
+  console.log('App de Exemplo escutando na porta 3000!')
 });
 
