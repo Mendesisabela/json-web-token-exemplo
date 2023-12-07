@@ -1,6 +1,5 @@
 // JWT
 require("dotenv-safe").config();
-const crypto = require('./crypto');
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
@@ -17,6 +16,8 @@ const corsOpcoes = {
 }
 
 var cookieParser = require('cookie-parser')
+
+const crypto = require('./crypto');
 
 const express = require('express');
 const { usuario } = require('./models');
@@ -69,6 +70,9 @@ app.post('/usuarios/cadastrar', async function(req, res){
     res.status(500).json({ message: 'As senhas não são iguais!' });
 }
 })
+
+
+
 
 app.get('/usuarios/listar', async function(req, res){
  try {

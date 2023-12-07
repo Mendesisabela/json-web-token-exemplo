@@ -8,7 +8,7 @@ import './style.css'
 
 export default function Login() {
   const [user, setUser] = useState({
-    email: '',
+    name: '',
     password: '',
   });
   const { push, refresh } = useRouter();
@@ -45,6 +45,9 @@ export default function Login() {
           type='password'
           onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
         </input>
+
+
+
         <button className="button">Entrar</button>
       </form>
       <ToastContainer />
