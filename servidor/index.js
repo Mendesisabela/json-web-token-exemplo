@@ -1,5 +1,6 @@
 // JWT
 require("dotenv-safe").config();
+const crypto = require('./crypto');
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
@@ -11,13 +12,13 @@ const corsOpcoes = {
   //Metodos que o cliente pode executar
   methods: "GET, PUT, POST, DELETE",
 
-  allowedHeaders: "Content-Type,Authorization",
+  allowedHeaders: "Content-Type, Authorization",
   credentials: true
 }
 
 var cookieParser = require('cookie-parser')
 
-const crypto = require('./crypto');
+// const crypto = require('./crypto');
 
 const express = require('express');
 const { usuario } = require('./models');
@@ -27,7 +28,7 @@ app.use(cors(corsOpcoes))
 
 app.set('view engine', 'ejs');
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
@@ -56,16 +57,16 @@ app.get('/usuarios/cadastrar', async function(req, res){
 
 
 app.post('/usuarios/cadastrar', async function(req, res){
-  try {
+  try { 
     const criptografia = {
       nome: req.body.nome,
       senha: crypto.encrypt(req.body.senha)
     }
     if(req.body.senha == req.body.confirmar){
-      const banco = await usuario.create(criptografia); 
+      const banco = await usuario.create(criptografia);
       res.redirect('/usuarios/listar')
     }
-} catch (err) {
+} catch (err) { 
     console.error(err);
     res.status(500).json({ message: 'As senhas não são iguais!' });
 }
@@ -85,13 +86,13 @@ app.get('/usuarios/listar', async function(req, res){
 })
 
 app.post('/logar', async (req, res) => {
-  const u = await usuario.findOne({ where: { nome: req.body.name, senha: crypto.encrypt(req.body.password) } });
+  const u = await usuario.findOne({ where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) } });
    if(u) {
     const id = u.id;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3000
     })
-    res.cookie('token', token, {httpOnly:true}).json({
+    return res.cookie('token', token, {httpOnly:true}).json({
       nome: u.nome,
       token: token
     })
@@ -100,12 +101,12 @@ app.post('/logar', async (req, res) => {
    // res.status(500).json({mensagem: "Login inválido!"})
 })
 
+
 app.post('/deslogar', function(req, res) {
   res.cookie('token', null, {httpOnly:true});
   res.json({deslogar:true})
 })
 
 app.listen(3001 , function() {
-  console.log('App de Exemplo escutando na porta 3000!')
+  console.log('App de Exemplo escutando na porta 3001!')
 });
-

@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-const CHAVE = 'bf3c199c2470cb477d907b1e0917c17e'; // 32
-const IV = "5183666c72eec9e4"; // 16
+const CHAVE = '98243hj9823h823ht928ht893ht2983h'; // 32
+const IV = "3284t93498ygt348"; // 16
 const ALGORITMO = "aes-256-cbc";
 const METODO_CRIPTOGRAFIA = 'hex';
 const METODO_DESCRIPTOGRAFIA = 'hex';
