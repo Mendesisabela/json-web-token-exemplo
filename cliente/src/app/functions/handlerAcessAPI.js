@@ -2,7 +2,7 @@
 
 import { cookies } from "next/dist/client/components/headers";
 
-const url = "http://localhost:3001"
+const url = "http://localhost:3001" //servidor
 
 const getUserAuthenticated = async (user) => {
    const responseOfApi = await fetch(url + "/logar",

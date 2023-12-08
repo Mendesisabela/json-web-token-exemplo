@@ -37,7 +37,7 @@ export default function Login() {
           id="nome" 
           type="text"  
           name="nome" 
-          placeholder="E-mail" 
+          placeholder="Nome" 
           onChange={(e) => { setUser({ ...user, nome: e.target.value }) }}>
         </input>
 
