@@ -18,7 +18,7 @@ const getUserAuthenticated = async (user) => {
 }
 
 const getUsers = async () =>{
-    const token = cookies().get("token")?.value
+    const token = cookies().get('token')?.value
     try{
         const responseOfApi = await fetch(url + "/usuarios/listar",{
             next: { revalidate: 5},
