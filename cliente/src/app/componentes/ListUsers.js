@@ -4,9 +4,9 @@ return (
     <div>
         {users?.map((user, index) =>
         <p key={index}>
-            {user.name}
+            {user.nome}
             <br/>
-            {user.password}
+            {user.senha}
         </p>
         )}
     </div>

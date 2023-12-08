@@ -11,13 +11,12 @@ const validateToken = async (token)=>{
     // }
     const isTokenValidate = await decode(token);
     if(isTokenValidate){
-        console.log(isTokenValidate);
-        return true
-         }
-    }
-      catch{
-      return false
+      console.log(isTokenValidate);
+      return true
   }
-  
+   }
+    catch{
+    return false
+}
 } 
 export {validateToken};

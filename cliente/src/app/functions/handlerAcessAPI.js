@@ -13,6 +13,7 @@ const getUserAuthenticated = async (user) => {
             }
    );
    const userAuth = await responseOfApi.json();
+   console.log(userAuth);
    return userAuth;
 }
 
@@ -49,6 +50,7 @@ const updateUser = async (user, id) => {
         return null;
     }
 }
+
 
 const postUser = async (user) => {
     const token = cookies().get("token")?.value
